@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app" class="app">
+    <div class="head">Note</div>
+    <div class="body">
+      <div v-if="mode === 'list'" class="list">
+        <ul>
+          <li v-for="(item, index) in memos" @click="modify(index)">{{ item.content }} <button @click="deleteList(index)">X</button></li>
+        </ul>
+      </div>
+      <div class="write" v-else-if="write">
+          <textarea v-model="memo.content"></textarea>
+          <button class="save-btn" @click="save()">Save</button>
+          <button class="cancel-btn" @click="cancel()">Cancel</button>
+      </div>
+      <button class="add-btn" v-if="mode === 'list'" @click="write()">+</button>
+    </div>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
